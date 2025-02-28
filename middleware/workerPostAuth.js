@@ -64,7 +64,7 @@ const workerPostAuth = async (req, res, next) => {
 
         // 🔹 Store results in request object for further processing
         req.analysis = analysis;
-
+        const update = await Report.updateOne({_id: id},req.body )
         next();
     } catch (error) {
         console.error("Error:", error);
