@@ -1,14 +1,13 @@
 import express from "express"
 import Report from "../models/report.js"
+import userPostAuth from "../middleware/userPostAuth.js"
+import workerPostAuth from "../middleware/workerPostAuth.js"
 
 const reportRouter = express.Router()
 
-reportRouter.post("/create",async(req,res)=>{
+reportRouter.post("/create", userPostAuth,async(req,res)=>{
     try {
-        if(!req.body)
-            res.status(400).json({message: "Error: filds are empty"})
-        const report = await new Report(req.body)
-        await report.save()
+        const report = req.report
         res.status(200).json({report})
     } catch (error) {
         res.status(400).json({message: "Error: "+error})
@@ -48,6 +47,19 @@ reportRouter.put("/update",async(req,res)=>{
     try {
         const id = req.query.id
         const report = await Report.findById(id)
+        if(!report)
+            res.status(404).json({message: "Error: report not found"})
+        const update = await Report.updateOne({_id: id},req.body )
+        res.status(200).json({update})
+    } catch (error) {
+        res.status(400).json({message: "Error: "+error})
+    }
+})
+
+reportRouter.put("/worker/update", workerPostAuth,async(req,res)=>{
+    try {
+        const id = req.query.id
+        const report = req.report
         if(!report)
             res.status(404).json({message: "Error: report not found"})
         const update = await Report.updateOne({_id: id},req.body )

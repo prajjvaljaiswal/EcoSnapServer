@@ -56,11 +56,13 @@ workerRouter.get("/available",async(req,res)=>{
     try {
         const worker = await Worker.find({status: "Available"});
         if(!worker)
-            res.status(404).json({message: " report not found"})
+            res.status(404).json({message: " workers not found"})
         res.status(200).json({reports})
     } catch (error) {
         res.status(400).json({message: "Error: "+error})
     }
 })
+
+
 
 export default workerRouter

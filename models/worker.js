@@ -4,7 +4,7 @@ const WorkerSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email:{ type: String, unique: true, required: true},
     phone: { type: String, required: true },
-    location: { type: String, required: true }, // Assigned area
+    location: { type: String}, // Assigned area
     reportsAssigned: [{ type: mongoose.Schema.Types.ObjectId, ref: "Report" }], 
     status: { type: String, enum: ["Available", "Busy"], default: "Available" },
 }, { timestamps: true });
