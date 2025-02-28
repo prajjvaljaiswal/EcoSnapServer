@@ -49,7 +49,7 @@ const userPostAuth = async (req, res, next) => {
         .trim();
         console.log(JSON.parse(preData));
         const data = JSON.parse(preData)
-        if(data.Garbage == "No" || (parseInt(data.Coverage) > 20 && data.Urgency != "Low") || data.Type == []){
+        if(data.Garbage == "No" || (parseInt(data.Coverage) < 20 && data.Urgency == "Low") || data.Type == []){
              report.status = "Rejected"
              await report.save()
             // res.status(400).json({message: "Error: It's not an garbage"})
