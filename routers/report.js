@@ -51,7 +51,6 @@ reportRouter.put("/update",async(req,res)=>{
         if(!report)
             res.status(404).json({message: "Error: report not found"})
         const update = await Report.updateOne({_id: id},req.body )
-        await update.save()
         res.status(200).json({update})
     } catch (error) {
         res.status(400).json({message: "Error: "+error})
@@ -65,7 +64,6 @@ reportRouter.put("/assign",async(req,res)=>{
         if(!report)
             res.status(404).json({message: "Error: report not found"})
         const update = await Report.updateOne({_id: id},req.body )
-        await update.save()
         res.status(200).json({update})
     } catch (error) {
         res.status(400).json({message: "Error: "+error})

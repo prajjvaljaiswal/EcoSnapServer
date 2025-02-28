@@ -61,7 +61,6 @@ userRouter.put("/profile/update", async(req, res)=>{
         if(!user)
             res.status(404).json({message: "Error: User not found"})
         const update = await User.updateOne({_id:user._id},req.body)
-        await update.save()
         res.status(200).json({user})
     } catch (error) {
         res.status(400).json({message: "Error: "+error})
