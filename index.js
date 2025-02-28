@@ -2,6 +2,8 @@ const express = require("express")
 const userRouter = require("./routers/user")
 const adminRouter = require("./routers/admin")
 const dbconnect = require("./database/mongodb")
+const workerRouter = require("./routers/worker")
+const reportRouter = require("./routers/report")
 const app = express()
 
 app.use(express.json())
@@ -23,3 +25,5 @@ app.get("/test",(req,res)=>{
 
 app.use("/user",userRouter)
 app.use("/admin",adminRouter)
+app.use("/worker",workerRouter)
+app.use("/report",reportRouter)
