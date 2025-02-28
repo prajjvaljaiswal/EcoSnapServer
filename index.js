@@ -7,7 +7,7 @@ app.use(express.json())
 
 dbconnect()
     .then(()=>{
-        app.listen(8000,()=>{
+        app.listen(7000,()=>{
             console.log("Server Online")
     })
     })
