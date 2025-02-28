@@ -65,6 +65,7 @@ const workerPostAuth = async (req, res, next) => {
     try {
         const id = req.query.id;
         const report = await Report.findById(id);
+        req.report = report
 
         if (!report) {
             return res.status(404).json({ message: "Error: Report not found" });
@@ -118,7 +119,6 @@ const workerPostAuth = async (req, res, next) => {
 
         // 🔹 Store results in request object for further processing
         req.analysis = analysis;
-        // const update = await Report.updateOne({_id: id},req.body )
         next();
     } catch (error) {
         console.error("Error:", error);
