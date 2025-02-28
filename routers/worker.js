@@ -56,8 +56,8 @@ workerRouter.get("/available",async(req,res)=>{
     try {
         const worker = await Worker.find({status: "Available"});
         if(!worker)
-            res.status(404).json({message: " workers not found"})
-        res.status(200).json({reports})
+            res.status(404).json({message: "workers not found"})
+        res.status(200).json({worker})
     } catch (error) {
         res.status(400).json({message: "Error: "+error})
     }
