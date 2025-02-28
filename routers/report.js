@@ -31,14 +31,14 @@ reportRouter.get("/from",async(req,res)=>{
         const {id, userId, workerId} = req.query
         let report;
         if(id)
-            {reports = await Report.findById(id)}
+            {report = await Report.findById(id)}
         else if(userId)
-            {reports = await Report.find({user: userId})}
+            {report = await Report.find({user: userId})}
         else if(userId)
-            {reports = await Report.find({assignedWorker: workerId})}
-        if(!reports)
+            {report = await Report.find({assignedWorker: workerId})}
+        if(!report)
             res.status(404).json({message: " report not found"})
-        res.status(200).json({reports})
+        res.status(200).json({report})
     } catch (error) {
         res.status(400).json({message: "Error: "+error})
     }
