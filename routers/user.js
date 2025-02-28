@@ -1,5 +1,5 @@
-const express = require("express")
-const User = require("../models/user")
+import express from "express"
+import User from "../models/user.js"
 
 const userRouter = express.Router()
 
@@ -68,4 +68,4 @@ userRouter.put("/profile/update", async(req, res)=>{
     }
 })
 
-module.exports = userRouter
+export default userRouter

@@ -1,9 +1,9 @@
-const express = require("express")
-const userRouter = require("./routers/user")
-const adminRouter = require("./routers/admin")
-const dbconnect = require("./database/mongodb")
-const workerRouter = require("./routers/worker")
-const reportRouter = require("./routers/report")
+import express from "express"
+import userRouter from "./routers/user.js"
+import adminRouter from "./routers/admin.js"
+import dbconnect from "./database/mongodb.js"
+import workerRouter from "./routers/worker.js"
+import reportRouter from "./routers/report.js"
 const app = express()
 
 app.use(express.json())

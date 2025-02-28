@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const AdminSchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -6,4 +6,4 @@ const AdminSchema = new mongoose.Schema({
     password: { type: String, required: true } // Hashed
 }, { timestamps: true });
 const Admin = mongoose.model("Admin", AdminSchema)
-module.exports = Admin;
+export default Admin

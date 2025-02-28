@@ -1,5 +1,5 @@
-const express = require("express")
-const Admin = require("../models/admin")
+import express from "express"
+import Admin from "../models/admin.js"
 
 const adminRouter = express.Router()
 
@@ -27,4 +27,4 @@ adminRouter.post("/login",async(req,res)=>{
     }
 })
 
-module.exports = adminRouter
+export default adminRouter

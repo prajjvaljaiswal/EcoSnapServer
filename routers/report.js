@@ -1,5 +1,5 @@
-const express = require("express")
-const Report = require("../models/report")
+import express from "express"
+import Report from "../models/report.js"
 
 const reportRouter = express.Router()
 
@@ -85,5 +85,5 @@ reportRouter.delete("/delete",async(req,res)=>{
     }
 })
 
-module.exports = reportRouter;
+export default reportRouter
 

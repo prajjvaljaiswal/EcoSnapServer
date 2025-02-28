@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const WorkerSchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -9,4 +9,4 @@ const WorkerSchema = new mongoose.Schema({
     status: { type: String, enum: ["Available", "Busy"], default: "Available" },
 }, { timestamps: true });
 const Worker = mongoose.model("Worker", WorkerSchema);
-module.exports = Worker
+export default Worker

@@ -1,5 +1,5 @@
-const express = require("express")
-const Worker = require("../models/worker")
+import express from "express"
+import Worker from "../models/worker.js"
 
 const workerRouter = express.Router()
 
@@ -63,4 +63,4 @@ workerRouter.get("/available",async(req,res)=>{
     }
 })
 
-module.exports = workerRouter
+export default workerRouter

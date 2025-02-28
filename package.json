@@ -1,6 +1,7 @@
 {
   "name": "ecosnapserver",
   "version": "1.0.0",
+  "type": "module",
   "description": "Server side of EcoSnap",
   "main": "index.js",
   "scripts": {

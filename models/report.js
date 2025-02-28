@@ -1,5 +1,4 @@
-const { request } = require("express");
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const ReportSchema = new mongoose.Schema({
     user: { type: String, ref: "User", required: true },
@@ -22,4 +21,4 @@ const ReportSchema = new mongoose.Schema({
     completionImageUrl: { type: String }, // Image after cleanup
 }, { timestamps: true });
 const Report = mongoose.model("Report", ReportSchema)
-module.exports = Report;
+export default Report
