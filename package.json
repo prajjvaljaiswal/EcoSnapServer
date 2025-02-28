@@ -1,0 +1,11 @@
+{
+  "name": "ecosnapserver",
+  "version": "1.0.0",
+  "description": "Server side of EcoSnap",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "PJ",
+  "license": "ISC"
+}
