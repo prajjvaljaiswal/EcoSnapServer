@@ -4,6 +4,7 @@ import adminRouter from "./routers/admin.js"
 import dbconnect from "./database/mongodb.js"
 import workerRouter from "./routers/worker.js"
 import reportRouter from "./routers/report.js"
+import eventRouter from "./routers/event.js"
 const app = express()
 
 app.use(express.json())
@@ -27,3 +28,4 @@ app.use("/user",userRouter)
 app.use("/admin",adminRouter)
 app.use("/worker",workerRouter)
 app.use("/report",reportRouter)
+app.use("/event", eventRouter)
