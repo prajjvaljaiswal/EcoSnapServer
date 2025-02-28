@@ -19,7 +19,7 @@ const userPostAuth = async (req, res, next) => {
     try {
         if(!req.body)
             res.status(400).json({message: "Error: filds are empty"})
-        const report = await new Report(req.body)
+        let report = await new Report(req.body)
         await report.save()
         const { imageUrl } = req.body;
         if (!imageUrl) {
@@ -50,8 +50,9 @@ const userPostAuth = async (req, res, next) => {
         console.log(JSON.parse(preData));
         const data = JSON.parse(preData)
         if(data.Garbage == "No" || (data.Coverage > 5 && data.Urgency == "Low") || data.Type == []){
-            const update = await Report.updateOne({_id: report._id},{status:"Rejected"})
-            res.status(400).json({message: "Error: It's not an garbage"})
+             report.status = "Rejected"
+             await report.save()
+            // res.status(400).json({message: "Error: It's not an garbage"})
         }
         req.report = report
         next()
