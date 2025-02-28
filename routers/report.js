@@ -51,6 +51,7 @@ const userPostAuth = async (req, res, next) => {
         const data = JSON.parse(preData)
         if(data.Garbage == "No" || (parseInt(data.Coverage) < 20 && data.Urgency == "Low") || data.Type == []){
              report.status = "Rejected"
+             report.description = "Garbage not valid"
              await report.save()
             // res.status(400).json({message: "Error: It's not an garbage"})
         }
