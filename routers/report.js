@@ -1,5 +1,7 @@
 import express from "express"
 import Report from "../models/report.js"
+import User from "../models/user.js";
+import Worker from "../models/worker.js";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
@@ -189,6 +191,17 @@ reportRouter.put("/worker/update", workerPostAuth,async(req,res)=>{
         const analysis = req.analysis
         if(!report)
             res.status(404).json({message: "Error: report not found"})
+        if(analysis.Cleaned && (analysis.CoverageReduction > 90)){
+            report.status = "Completed"
+            report.description = analysis.Notes
+            await report.save()
+            const user = await User.findOne({email: report.user})
+            user.points = user.points+10
+            await user.save()
+            const worker = await findOne({email: report.assignedWorker})
+            worker.points = worker.points + 1
+            await worker.save()
+        }
         // const update = await Report.updateOne({_id: id},req.body )
         res.status(200).json({report, analysis})
     } catch (error) {
