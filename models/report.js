@@ -17,7 +17,7 @@ const ReportSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    assignedWorker: { type: String, ref: "Worker" },
+    assignedWorker: { type: String, ref: "Worker"},
     completionImageUrl: { type: String }, // Image after cleanup
 }, { timestamps: true });
 const Report = mongoose.model("Report", ReportSchema)

@@ -2,6 +2,7 @@ import express from "express"
 import Report from "../models/report.js"
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 
 dotenv.config()
 // import userPostAuth from "../middleware/userPostAuth.js"
@@ -117,7 +118,7 @@ const workerPostAuth = async (req, res, next) => {
 
         // 🔹 Store results in request object for further processing
         req.analysis = analysis;
-        const update = await Report.updateOne({_id: id},req.body )
+        // const update = await Report.updateOne({_id: id},req.body )
         next();
     } catch (error) {
         console.error("Error:", error);
@@ -172,7 +173,7 @@ reportRouter.put("/update",async(req,res)=>{
         const report = await Report.findById(id)
         if(!report)
             res.status(404).json({message: "Error: report not found"})
-        const update = await Report.updateOne({_id: id},req.body )
+        const update = await Report.updateOne({_id: id},{$set: req.body} )
         res.status(200).json({update})
     } catch (error) {
         res.status(400).json({message: "Error: "+error})
@@ -183,10 +184,11 @@ reportRouter.put("/worker/update", workerPostAuth,async(req,res)=>{
     try {
         const id = req.query.id
         const report = req.report
+        const analysis = req.analysis
         if(!report)
             res.status(404).json({message: "Error: report not found"})
         // const update = await Report.updateOne({_id: id},req.body )
-        res.status(200).json({report})
+        res.status(200).json({report, analysis})
     } catch (error) {
         res.status(400).json({message: "Error: "+error})
     }
@@ -194,11 +196,11 @@ reportRouter.put("/worker/update", workerPostAuth,async(req,res)=>{
 
 reportRouter.put("/assign",async(req,res)=>{
     try {
-        const {id} = req.query
+        const id = new mongoose.Types.ObjectId(req.query.id)
         const report = await Report.findById(id)
         if(!report)
             res.status(404).json({message: "Error: report not found"})
-        const update = await Report.updateOne({_id: id},req.body )
+        const update = await Report.updateOne({_id: report._id},{$set:{reportsAssigned: req.body.reportsAssigned}} )
         res.status(200).json({update})
     } catch (error) {
         res.status(400).json({message: "Error: "+error})

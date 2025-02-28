@@ -6,7 +6,7 @@ const WorkerSchema = new mongoose.Schema({
     phone: { type: String, required: true },
     location: { type: String }, // Assigned area
     reportsAssigned: [{ type: mongoose.Schema.Types.ObjectId, ref: "Report" ,default:""}],
-    status: { type: String, enum: ["Available", "Busy"], default: "Available" },
+    status: { type: String, enum: ["Available", "In Progress"], default: "Available" },
 }, { timestamps: true });
 const Worker = mongoose.model("Worker", WorkerSchema);
 export default Worker
