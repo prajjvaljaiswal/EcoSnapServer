@@ -5,7 +5,10 @@ import dbconnect from "./database/mongodb.js"
 import workerRouter from "./routers/worker.js"
 import reportRouter from "./routers/report.js"
 import eventRouter from "./routers/event.js"
+import cors from "cors"
 const app = express()
+app.use(cors({ origin: "*", methods: "GET,POST,PUT,DELETE" }));
+
 
 app.use(express.json())
 

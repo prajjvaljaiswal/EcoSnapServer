@@ -136,6 +136,8 @@ const workerPostAuth = async (req, res, next) => {
 reportRouter.post("/create", userPostAuth,async(req,res)=>{
     try {
         const report = req.report
+        // const user = await User.findOne({email: req.query.id})
+        // user.reports = report._id
         res.status(200).json({report})
     } catch (error) {
         res.status(400).json({message: "Error: "+error})
