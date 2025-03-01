@@ -19,7 +19,7 @@ export const createEvent = async (req, res) => {
 export const getAllEvents = async (req, res) => {
     try {
         const events = await Event.find();
-        res.status(200).json(events);
+        res.status(200).json({events});
     } catch (error) {
         res.status(500).json({ message: "Error fetching events", error });
     }
