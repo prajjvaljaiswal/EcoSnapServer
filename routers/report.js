@@ -196,13 +196,13 @@ reportRouter.put("/worker/update", workerPostAuth,async(req,res)=>{
         if(analysis.Cleaned && (analysis.CoverageReduction > 90)){
             const user = await User.findOne({email: report.user})
             user.points = user.points+10
-            await user.save()
             const worker = await findOne({email: report.assignedWorker})
             worker.points = worker.points + 1
             await worker.save()
             report.status = "Completed"
             // report.description = analysis.Notes
             await report.save()
+            await user.save()
         }
         // const update = await Report.updateOne({_id: id},req.body )
         res.status(200).json({report, analysis})
