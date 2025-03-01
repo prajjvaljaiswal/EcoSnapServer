@@ -149,7 +149,7 @@ reportRouter.get("/all",async(req,res)=>{
         const reports = await Report.find()
         if(!reports)
             res.status(404).json({message: "Error: report not found"})
-        res.status(200).json({reports})
+        res.status(200).json({report: reports})
     } catch (error) {
         res.status(400).json({message: "Error: "+error})
     }
